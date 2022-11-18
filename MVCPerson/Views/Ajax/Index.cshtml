@@ -1,8 +1,10 @@
-﻿@{
+﻿@model CreatePersonViewModel
+
+@{
     ViewData["Title"] = "Index";
 }
 
-<h1>Single page People with Ajax</h1>
+<h1> People List with Ajax</h1>
 
 <button class="btn-dark" onclick="ajaxPeopleList('@Url.Action("PartialViewPeople", "People")')">Get people list</button>
 <div class="row"></div>
