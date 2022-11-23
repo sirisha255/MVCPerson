@@ -3,17 +3,18 @@ using MVCPerson.Models;
 using MVCPerson.Models.Repos;
 using MVCPerson.Models.Services;
 using MVCPerson.Models.ViewModels;
-using PeopleApp.Models.Repos;
+using System.Diagnostics;
+
 
 namespace MVCPerson.Controllers
 {
     public class PeopleController : Controller
     {
-        IPeopleService _peopleService;
+       private readonly IPeopleService _peopleService;
 
-        public PeopleController()
+        public PeopleController(PeopleService peopleService)
         {
-          _peopleService = new PeopleService(new InMemoryPeopleRepo());
+          _peopleService = peopleService;
         }
         public IActionResult People()
         {

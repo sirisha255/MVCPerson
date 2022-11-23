@@ -14,5 +14,6 @@
 
         //D Delete a Person from the List
         public bool Delete(Person person);
+        List<Person> GetByCity(string City);
     }
 }

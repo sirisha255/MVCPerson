@@ -1,7 +1,7 @@
 ﻿using MVCPerson.Models;
 using MVCPerson.Models.Repos;
 
-namespace PeopleApp.Models.Repos
+namespace MVCPerson.Models.Repos
     {
         public class InMemoryPeopleRepo : IPeopleRepo
         {
@@ -37,8 +37,12 @@ namespace PeopleApp.Models.Repos
                 }
                 return null;
             }
+        public List<Person> GetByCity(string City)
+        {
+            throw new NotImplementedException();
+        }
 
-            public bool Update(Person person)
+        public bool Update(Person person)
             {
                 Person orgPerson = Read(person.PersonId);
                 if (orgPerson == null)
@@ -57,5 +61,7 @@ namespace PeopleApp.Models.Repos
             {
                 return peopleList.Remove(person);
             }
-        }
+
+       
+    }
 }
