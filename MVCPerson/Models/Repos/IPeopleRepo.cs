@@ -4,7 +4,7 @@
     {
 
         //C Create
-        public Person Create(string name, string phonenumber, string city);
+        public Person Create(Person person);
 
         //R Read the People List
         public List<Person> Read();

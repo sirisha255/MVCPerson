@@ -6,7 +6,7 @@ namespace MVCPerson.Models.Services
 {
     public class PeopleService : IPeopleService
     {
-        IPeopleRepo _peopleRepo;
+        readonly IPeopleRepo _peopleRepo;
         public PeopleService(IPeopleRepo peopleRepo)
         {
             _peopleRepo = peopleRepo;
@@ -14,17 +14,25 @@ namespace MVCPerson.Models.Services
 
         public Person Add(CreatePersonViewModel createPerson)
         {
-            Person person = _peopleRepo.Create(createPerson.Name, createPerson.PhoneNumber, createPerson.CityName);
+           // Person person = _peopleRepo.Create(createPerson.Name, createPerson.PhoneNumber, createPerson.CityName);
+
             if (string.IsNullOrWhiteSpace(createPerson.Name)
                             || string.IsNullOrWhiteSpace(createPerson.PhoneNumber)
                             || string.IsNullOrWhiteSpace(createPerson.CityName))
             {
                 throw new ArgumentException("Name,PhoneNumber or City, not be consist of backspace(s)/whitespace(s)");
-            }
 
+            }
+            Person person = new Person()
+            {
+                Name = createPerson.Name,
+                PhoneNumber = createPerson.PhoneNumber,
+                CityName = createPerson.CityName,
+
+            };
+            person = _peopleRepo.Create(person);
             return person;
         }
-    
 
         public List<Person> All()
         {

@@ -11,18 +11,7 @@ namespace MVCPerson.Models.Repos
         {
             _peopleDbContext = peopleDbContext;
         }
-        public Person Create(string person)
-        {
-            throw new NotImplementedException();
-        }
-
-        
-        public List<Person> GetAll()
-        {
-            return _peopleDbContext.Persons.ToList();
-        }
-
-        public Person GetById(int id)
+        public Person Create(Person person)
         {
             throw new NotImplementedException();
         }
@@ -30,15 +19,23 @@ namespace MVCPerson.Models.Repos
         {
             throw new NotImplementedException();
         }
-     
-        public bool Update1(Person person)
-        {
-            throw new NotImplementedException();
-        }
-        public bool Delete1(Person person)
+
+        public List<Person> Read()
         {
             throw new NotImplementedException();
         }
 
+        public Person Read(int id)
+        {
+            throw new NotImplementedException();
+        }
+        public bool Update(Person person)
+        {
+            throw new NotImplementedException();
+        }
+        public bool Delete(Person person)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

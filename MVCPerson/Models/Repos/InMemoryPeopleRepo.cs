@@ -7,14 +7,14 @@ namespace MVCPerson.Models.Repos
         {
             private static List<Person> peopleList = new List<Person>();
             private static int idCounter = 0;
-            public Person Create(string name, string phonenumber, string cityname)
+            public Person Create(Person person)
             {
-                Person person = new Person(name, phonenumber, cityname);
+              //  Person person = new Person(name,phonenumber,cityname);
 
-                person.PersonId = ++idCounter;
-                person.Name = name;
-                person.PhoneNumber = phonenumber;
-                person.CityName = cityname;
+               // person.PersonId = ++idCounter;
+               // person.Name = name;
+               // person.PhoneNumber = phonenumber;
+              //  person.CityName = cityname;
                 peopleList.Add(person);
                 return person;
             }

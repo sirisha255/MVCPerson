@@ -9,6 +9,10 @@
             CityName = cityname;
         }
 
+        public Person()
+        {
+
+        }
         public int PersonId { get; set; }
         public string? Name { get; set; }
         public string? PhoneNumber { get; set; }
