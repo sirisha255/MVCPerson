@@ -22,7 +22,7 @@ namespace MVCPerson.Controllers
         }
         public IActionResult People()
         {
-            return View(_peopleService.All());
+            return View(_peopleService.GetAll());
         }
 
         [HttpGet]
