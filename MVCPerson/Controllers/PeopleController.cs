@@ -4,6 +4,10 @@ using MVCPerson.Models.Repos;
 using MVCPerson.Models.Services;
 using MVCPerson.Models.ViewModels;
 using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Linq;
+using System;
+using System.Collections.Generic;
 
 
 namespace MVCPerson.Controllers
@@ -18,20 +22,11 @@ namespace MVCPerson.Controllers
         }
         public IActionResult People()
         {
-            return View(_peopleService.All());
+            return View(_peopleService.GetAll());
         }
-        public IActionResult Details(int id) 
-        {
-            Person person = _peopleService.FindById(id);
 
-            if (person == null)
-            {
-                return RedirectToAction(nameof(People));
-            }
-
-            return View(person);
-        }
         [HttpGet]
+        [AutoValidateAntiforgeryToken]
         public IActionResult Create()
         { 
             return View(new CreatePersonViewModel());   
@@ -43,7 +38,7 @@ namespace MVCPerson.Controllers
             {
                 try
                 {
-                    _peopleService.Add(createPerson);
+                    _peopleService.Create(createPerson);
                 }
                 catch (ArgumentException exception)
                 {
@@ -54,6 +49,18 @@ namespace MVCPerson.Controllers
                 return RedirectToAction(nameof(People));
             }
             return View(createPerson);
+        }
+        [HttpGet]
+        public IActionResult Details(int id)
+        {
+            Person person = _peopleService.FindById(id);
+
+            if (person == null)
+            {
+                return RedirectToAction(nameof(People));
+            }
+
+            return View(person);
         }
 
         [HttpGet]
@@ -86,7 +93,7 @@ namespace MVCPerson.Controllers
                 return RedirectToAction(nameof(People));
             }
 
-            _peopleService.Add(editPerson);
+            _peopleService.Create(editPerson);
             return View(editPerson);
         }
         public IActionResult Delete(int id)
@@ -118,7 +125,7 @@ namespace MVCPerson.Controllers
         //****************Ajax********************//
         public IActionResult PartialViewPeople()
         {
-            return PartialView("_PeopleList", _peopleService.All());
+            return PartialView("_PeopleList", _peopleService.GetAll());
         }
         [HttpPost]
         public IActionResult PartialViewDetails(int id)
@@ -133,9 +140,10 @@ namespace MVCPerson.Controllers
         public IActionResult AjaxDelete(int id)
         {
             Person person = _peopleService.FindById(id);
-            if (_peopleService.Remove(id))
+            if (person != null)
             {
-                return PartialView("_PeopleList", _peopleService.All());
+                _peopleService.Remove(id);
+                return PartialView("_PeopleList", _peopleService.GetAll());
             }
             return NotFound();
         }

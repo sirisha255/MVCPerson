@@ -13,7 +13,7 @@ public class Program
         // Add services to the container.
         builder.Services.AddDbContext<PeopleDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-        //builder.Services.AddScoped<IPeopleRepo, InMemoryPeopleRepo>();
+        builder.Services.AddScoped<IPeopleRepo, InMemoryPeopleRepo>();
         builder.Services.AddScoped<IPeopleRepo, DataBasePeopleRepo>();
         builder.Services.AddScoped<IPeopleService, PeopleService>();
 

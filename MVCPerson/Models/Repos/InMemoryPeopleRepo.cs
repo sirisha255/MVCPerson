@@ -1,5 +1,7 @@
-﻿using MVCPerson.Models;
-using MVCPerson.Models.Repos;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace MVCPerson.Models.Repos
     {
@@ -11,7 +13,7 @@ namespace MVCPerson.Models.Repos
             {
               //  Person person = new Person(name,phonenumber,cityname);
 
-               // person.PersonId = ++idCounter;
+               person.PersonId = ++idCounter;
                // person.Name = name;
                // person.PhoneNumber = phonenumber;
               //  person.CityName = cityname;
@@ -19,23 +21,24 @@ namespace MVCPerson.Models.Repos
                 return person;
             }
 
-            public List<Person> Read()
+            public List<Person> GetAll()
             {
                 return peopleList;
             }
 
-            public Person Read(int id)
+            public Person GetById(int id)
             {
-
-                foreach (Person person in peopleList)
+            Person person = null;
+            
+                foreach (Person aPerson in peopleList)
                 {
-                    if (person.PersonId == id)
+                    if (aPerson.PersonId == id)
                     {
-                        return person;
-
+                        return aPerson;
+                        break;
                     }
                 }
-                return null;
+                return person;
             }
         public List<Person> GetByCity(string City)
         {
@@ -44,10 +47,10 @@ namespace MVCPerson.Models.Repos
 
         public bool Update(Person person)
             {
-                Person orgPerson = Read(person.PersonId);
+                Person orgPerson = GetById(person.PersonId);
                 if (orgPerson == null)
                 {
-                    return false;
+                   return false;
                 }
                 else
                 {
@@ -57,9 +60,9 @@ namespace MVCPerson.Models.Repos
                     return true;
                 }
             }
-            public bool Delete(Person person)
+            public void Delete(Person person)
             {
-                return peopleList.Remove(person);
+                peopleList.Remove(person);
             }
 
        

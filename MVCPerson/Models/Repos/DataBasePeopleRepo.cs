@@ -1,6 +1,12 @@
 ﻿using MVCPerson.Data;
 using MVCPerson.Models.Repos;
 using Microsoft.EntityFrameworkCore;
+using MVCPerson.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
 
 namespace MVCPerson.Models.Repos
 {
@@ -13,29 +19,37 @@ namespace MVCPerson.Models.Repos
         }
         public Person Create(Person person)
         {
-            throw new NotImplementedException();
+           _peopleDbContext.Add(person);
+            _peopleDbContext.SaveChanges();
+            return person;
         }
-        public List<Person> GetByCity(string City)
+        public List<Person> GetAll()
         {
-            throw new NotImplementedException();
-        }
-
-        public List<Person> Read()
-        {
-            throw new NotImplementedException();
+            return _peopleDbContext.Persons.ToList();
         }
 
-        public Person Read(int id)
+        public Person GetById(int id)
         {
-            throw new NotImplementedException();
+            return _peopleDbContext.Persons.SingleOrDefault(person => person.PersonId == id);
+        }
+        public List<Person> GetByCity(string city)
+        {
+            return _peopleDbContext.Persons.Where(person => person.CityName.Contains(city)).ToList();
         }
         public bool Update(Person person)
         {
-            throw new NotImplementedException();
+            _peopleDbContext.Persons.Update(person);
+           int result = _peopleDbContext.SaveChanges();
+            if(result==0)
+            {
+                return false;
+            }
+            return true;
         }
-        public bool Delete(Person person)
+        public void Delete(Person person)
         {
-            throw new NotImplementedException();
+            _peopleDbContext.Remove(person);
+            _peopleDbContext.SaveChanges();
         }
     }
 }
