@@ -17,7 +17,7 @@ namespace MVCPerson.Controllers
         }
         public IActionResult People()
         {
-            return View(_peopleService.All());// LastAdded
+            return View(_peopleService.All());
         }
         public IActionResult Details(int id) 
         {
