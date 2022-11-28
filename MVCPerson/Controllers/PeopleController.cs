@@ -14,9 +14,9 @@ namespace MVCPerson.Controllers
 {
     public class PeopleController : Controller
     {
-        readonly IPeopleService _peopleService;
+        IPeopleService _peopleService;
 
-        public PeopleController(PeopleService peopleService)
+        public PeopleController(IPeopleService peopleService)
         {
           _peopleService = peopleService;
         }
