@@ -1,49 +1,56 @@
-﻿using MVCPerson.Models;
-using MVCPerson.Models.Repos;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace PeopleApp.Models.Repos
+namespace MVCPerson.Models.Repos
     {
         public class InMemoryPeopleRepo : IPeopleRepo
         {
             private static List<Person> peopleList = new List<Person>();
             private static int idCounter = 0;
-            public Person Create(string name, string phonenumber, string cityname)
+            public Person Create(Person person)
             {
-                Person person = new Person(name, phonenumber, cityname);
+              //  Person person = new Person(name,phonenumber,cityname);
 
-                person.PersonId = ++idCounter;
-                person.Name = name;
-                person.PhoneNumber = phonenumber;
-                person.CityName = cityname;
+               person.PersonId = ++idCounter;
+               // person.Name = name;
+               // person.PhoneNumber = phonenumber;
+              //  person.CityName = cityname;
                 peopleList.Add(person);
                 return person;
             }
 
-            public List<Person> Read()
+            public List<Person> GetAll()
             {
                 return peopleList;
             }
 
-            public Person Read(int id)
+            public Person GetById(int id)
             {
-
-                foreach (Person person in peopleList)
+            Person person = null;
+            
+                foreach (Person aPerson in peopleList)
                 {
-                    if (person.PersonId == id)
+                    if (aPerson.PersonId == id)
                     {
-                        return person;
-
+                        return aPerson;
+                        break;
                     }
                 }
-                return null;
+                return person;
             }
+        public List<Person> GetByCity(string City)
+        {
+            throw new NotImplementedException();
+        }
 
-            public bool Update(Person person)
+        public bool Update(Person person)
             {
-                Person orgPerson = Read(person.PersonId);
+                Person orgPerson = GetById(person.PersonId);
                 if (orgPerson == null)
                 {
-                    return false;
+                   return false;
                 }
                 else
                 {
@@ -53,9 +60,11 @@ namespace PeopleApp.Models.Repos
                     return true;
                 }
             }
-            public bool Delete(Person person)
+            public void Delete(Person person)
             {
-                return peopleList.Remove(person);
+                peopleList.Remove(person);
             }
-        }
+
+       
+    }
 }
