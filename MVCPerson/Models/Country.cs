@@ -15,6 +15,7 @@ namespace MVCPerson.Models
         {
             CountryName = countryName;
         }
+
         public Country()
         { }
     }

@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace MVCPerson.Models.ViewModels
 {
     public class CreateCityViewModel
@@ -16,6 +17,8 @@ namespace MVCPerson.Models.ViewModels
     public List<Person> PeopleList   { get; set; }
         public int CountryId { get; set; }
         public List<Country> Countries { get; set; }
+        public string? CountryName { get; set; }
+
         public CreateCityViewModel()
         { 
             Countries = new List<Country>();

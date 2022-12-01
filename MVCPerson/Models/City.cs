@@ -18,6 +18,7 @@ namespace MVCPerson.Models
         public List<Person> People { get; set; }
         [ForeignKey("Country")]
         public int CountryId { get; set; }
+      // public string CountryName { get; set; }
         public Country Country { get; set; }
     }
 }
