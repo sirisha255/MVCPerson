@@ -36,7 +36,7 @@ namespace MVCPerson.Models.Repos
         {
             _peopleDbContext.Countries.Update(country);
             int countryUp = _peopleDbContext.SaveChanges();
-            if(countryUp> 0)
+            if(countryUp > 0)
             {
                 return true;
             }
@@ -48,7 +48,7 @@ namespace MVCPerson.Models.Repos
         {
             _peopleDbContext.Countries.Remove(country);
             int countryDel = _peopleDbContext.SaveChanges();
-            if(countryDel> 0)
+            if(countryDel > 0)
             {
                 return true;
             }

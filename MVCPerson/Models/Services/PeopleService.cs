@@ -9,7 +9,7 @@ namespace MVCPerson.Models.Services
 {
     public class PeopleService : IPeopleService
     {
-        IPeopleRepo _peopleRepo;
+        readonly IPeopleRepo _peopleRepo;
         public PeopleService(IPeopleRepo peopleRepo)
         {
             _peopleRepo = peopleRepo;

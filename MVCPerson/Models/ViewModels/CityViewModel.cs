@@ -1,4 +1,6 @@
-﻿namespace MVCPerson.Models.ViewModels
+﻿
+
+namespace MVCPerson.Models.ViewModels
 {
     public class CityViewModel
     {
